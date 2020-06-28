@@ -1,0 +1,256 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+.App {
+  text-align: center;
+}
+.Music {
+  margin-top: 20px;
+  text-align: center;
+}
+#l1{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+}
+#l2{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+}
+.main{
+position: relative;
+display: flex;
+flex-direction: column;
+}
+.time{
+  position: absolute;
+    top: 10px;
+    right: 1em;
+    transition: opacity 0.218s ease-in;
+    color: white;
+    font-weight: 400;
+}
+.content{
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    left: 0;
+    top: 0;
+    position: fixed;
+    will-change: transform;
+}
+#root{
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(.3,0,.4,1);
+  min-height: 100vh;
+}
+.top-container{
+  min-height: 100%;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.sidebar{
+  width: 220px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(0,0,0,.5);
+  overflow: auto;
+  min-height: 0!important;
+  will-change: transform;
+}
+.now-playing {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.play-controls{
+  display: flex;
+  width: max-content;
+  margin-top: -1.4em;
+  justify-content: space-between;
+  align-items: center;
+}
+.right-controls{
+  display: flex;
+  align-items: center;
+  margin-bottom: 3em;
+}
+.collection{
+  border:none !important;
+  color:white;
+}
+.collection .collection-item{
+  border-bottom:none !important;
+}
+a{
+  color:white !important;
+}
+.collection .collection-item.avatar i.circle{
+  background-color:#1db954  !important;
+}
+.tracklistitem{
+  display: flex;
+  height: 4.56em;
+  list-style-type: none;
+  padding-top: 5px;
+}
+.tracklist{
+color: hsla(0,0%,100%,.6);
+width: 100%;
+}
+.outercontrol{
+padding-right: 3.8em;
+padding-left: 0.5em;
+width: 3em;
+}
+.trackinfo{
+text-align: left;
+flex: 1;
+width: 0;
+overflow: hidden;
+}
+.oneline {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+.tracklist-name {
+  font-size: 1em;
+  line-height: 22px;
+  letter-spacing: .015em;
+  color: #fff;
+}
+.trackwrapper .second-line{
+  display: block;
+  transition-property: color;
+  transition-duration: .2s;
+  transition-timing-function: linear;
+  color: hsla(0,0%,100%,.6);
+}
+.tracklistitem .duration {
+  font-feature-settings: "tnum";
+  letter-spacing: 0;
+  text-align: right;
+  padding-right: 1em;
+  width: 3.9em;
+}
+.tracklistitem .download{
+padding-right: 1em;
+}
+@media screen and (max-width: 400px) {
+    .tracklistitem .download{
+      padding-right: 0;
+      padding-left: 0.3em;
+    }
+}
+@media screen and (min-width: 800px) {
+  #l1{
+    left: 50% !important;
+  }
+}
+@media screen and (max-width: 360px) {
+  #pause {
+    margin: 1em 1.0em 1em 1.0em !important;
+ }
+ #play{
+  margin: 1em 1em 1em 1em !important;
+  }
+  .right-controls{
+  margin-left: -10px;
+  }
+}
+@media screen and (min-width: 500px) {
+ .volcon{
+ margin-right: 7px;
+ margin-left: 7px;
+ }
+}
+nav ul {
+  margin: 0;
+  margin-right: 2em;
+}
+.input-field {
+ width:90%;
+ transition-duration: 100ms;
+}
+.modal-header{
+  width: 100%;
+  margin-top: -1.5em;
+}
+.modal-body{
+width: 100%;
+margin-top: 2em;
+}
+.dropdown-content {
+ height:200px !important;
+ overflow: auto;
+}
+@-moz-document url-prefix() {
+  .play-controls{
+   margin-top: -1.4em;
+  }
+  .inf{
+  margin-top: -2.7em;
+  }
+}
+@supports (-ms-ime-align: auto) {
+   .play-controls{
+    margin-top: -1.4em;
+   }
+   .inf{
+   margin-top: -2.7em;
+   }
+}
+@media all and (-ms-high-contrast:none){
+  .play-controls{
+    margin-top: -1.4em;
+   }
+   .inf{
+   margin-top: -2.7em;
+   }
+}
+.material-icons{
+ cursor: pointer;
+}
+.login-form {
+  width: 320px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.login-form-text {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2rem;
+}
+
+.login-text {
+  margin-top: -6px;
+  margin-left: -6px !important;
+}
+#login-page{
+ width: 360px;
+ margin-top: 100px;
+}
+
+.input-field{
+  position: relative;
+  margin-bottom:-3px; 
+}
+.modal{
+  height: 50% !important
+}
