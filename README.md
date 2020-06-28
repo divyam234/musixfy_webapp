@@ -1,2 +1,2 @@
-# musixfy_webapp
+# Musixfy Webapp
 Musixfy Web App
