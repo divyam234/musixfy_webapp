@@ -30,9 +30,6 @@ class Settings extends React.Component {
       open: () => { this.instance.open() }
     })
     
-    let cacheFiles=JSON.parse(localStorage.getItem('cache_files'))
-    this.setState({isChecked:cacheFiles})
-
   }
   componentWillUnmount() {
     this.props.modalcontrol(null);
