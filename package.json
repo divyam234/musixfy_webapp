@@ -8,7 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.19.2",
     "connected-react-router": "^6.8.0",
-    "history": "^5.0.0",
+    "history": "^4.10.1",
     "howler": "^2.2.0",
     "js-base64": "^2.6.2",
     "materialize-css": "^1.0.0",

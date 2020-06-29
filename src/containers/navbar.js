@@ -19,6 +19,7 @@ class Navbar extends Component {
     });
     document.removeEventListener('keydown', this.props.keypress)
   }
+  
   blur = (e) => {
     e.target.value = ''
     this.setState((state, props) => {
@@ -28,6 +29,7 @@ class Navbar extends Component {
     })
     document.addEventListener('keydown', this.props.keypress)
   }
+  
   submit = (event) => {
     event.preventDefault();
     this.props.history.push('/search?q=' + this.value, { tracks: 'hello' })
