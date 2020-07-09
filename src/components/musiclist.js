@@ -1,60 +1,71 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { connect } from 'react-redux';
 import Loader from './loader'
 import { bindActionCreators } from 'redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { loadsongs, loadsongsnew } from '../actions/index'
 import MusicItem from './musicitem'
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
 
-class list extends Component {
-  query = null
-
-  componentWillMount() {
-    const params = new URLSearchParams(this.props.location.search);
-    this.query = params.get('q');
-    this.props.loadsongsnew({ query: this.query, offset: 0 })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location.search !== this.props.location.search) {
-      const params = new URLSearchParams(nextProps.location.search);
-      this.query = params.get('q');
-      this.props.loadsongsnew({ query: this.query, offset: 0 })
+const useStyles = makeStyles((theme) => ({
+   root: {
+    width:'100%',
+    marginBottom: '9em', 
+    marginTop: '2em',
+    [theme.breakpoints.up('sm')]: {
+      width: '70%',
     }
+   },
+   result:{ 
+   color: 'white',
+   width: 'max-content', 
+   margin: '2em auto'
+  }  
+}));
+
+const MusicList= props=> {
+  
+  const classes = useStyles();
+  
+  let query=null
+  
+  useEffect(
+    () => {
+      const params = new URLSearchParams(props.location.search);
+      query = params.get('q');
+      props.loadsongsnew({ query:query, offset: 0 })
+    },
+    [props.location.search],
+  );
+  
+  const fetchMoreData = () => {
+    props.loadsongs({ query: query, offset: props.offset - 1 })
   }
 
-  componentWillUnmount() {
-  }
-
-  fetchMoreData = () => {
-    this.props.loadsongs({ query: this.query, offset: this.props.offset - 1 })
-  }
-
-  render() {
-    let hasmore = this.props.offset < this.props.count ? true : false
-    return (
+  let hasmore = props.offset < props.count ? true : false
+  return (
       <React.Fragment>
-        {this.props.loading && <Loader />}
-        {this.props.tracks.length !== 0 && !this.props.loading &&
+        {props.loading && <Loader />}
+        {props.tracks.length !== 0 && !props.loading &&
           <InfiniteScroll
-            dataLength={this.props.tracks.length}
-            next={this.fetchMoreData}
+            dataLength={props.tracks.length}
+            next={fetchMoreData}
             height={'75.5vh'}
             hasMore={hasmore}
           >
-            <div className="container" style={{ 'marginBottom': '9em', 'marginTop': '2em' }}>
+          <Container  classes={{root: classes.root}}>
               <ul className="tracklist">
-                {this.props.tracks.map(function (item, index) {
+                {props.tracks.map(function (item, index) {
                   return <MusicItem index={index + ''} key={index} data={item} />
                 })}
               </ul>
-            </div>
+              </Container>
           </InfiniteScroll>}
-        {this.props.tracks.length === 0 && !this.props.loading && <h4 style={{ 'color': 'white', 'width': 'max-content', 'margin': '2em auto' }}> No Result Found </h4>}
+        {props.tracks.length === 0 && !props.loading && <h1 className={classes.result}> No Result Found </h1>}
       </React.Fragment>
-    )
+  )
   }
-}
 
 const mapStateToProps = (state) => {
   return {
@@ -72,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
     loadsongsnew
   }, dispatch);
 }
-export default connect(mapStateToProps, mapDispatchToProps)(list);
+export default connect(mapStateToProps, mapDispatchToProps)(MusicList);

@@ -1,10 +1,12 @@
 import React from 'react'
-const loader=(props)=>{
-    let style={
-    'top': '50%',
-    'left': '50%',
-    'position':'absolute',
-     'transform': 'translate(-50%,-50%)',
+
+const Loader=(props)=>{
+   
+     let style={
+     top: '50%',
+     left: '50%',
+     position:'absolute',
+     transform: 'translate(-50%,-50%)',
      height:'100px',
      width:'100px'
     }
@@ -64,4 +66,4 @@ const loader=(props)=>{
 
     )
 }
-export default loader;
+export default Loader;

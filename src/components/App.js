@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "materialize-css/dist/css/materialize.min.css";
 import "nouislider/distribute/nouislider.min.css"
 import "../css/index.css"
 import "../css/control.css"
