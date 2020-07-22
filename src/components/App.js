@@ -1,40 +1,43 @@
-import React, { Component } from 'react';
+import React, {Suspense, lazy,useEffect} from 'react';
 import "nouislider/distribute/nouislider.min.css"
 import "../css/index.css"
 import "../css/control.css"
-import Controls from './controls';
-import List from './musiclist'
 import Navbar from '../containers/navbar'
-import { Route, withRouter } from 'react-router-dom'
+import Controls from './controls'
+import { Route, withRouter,Switch } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changebackg,changeCacheState } from '../actions/index'
-import Login from './login'
 
-class App extends Component {
-  componentDidMount() {
-    this.props.changeCacheState({})
-    this.props.changebackg({})
+const App =props=> {
+  
+   useEffect(()=> {
+    props.changeCacheState({})
+    props.changebackg({})
     window.onkeydown = (e) => {
       if (e.keyCode === 32 && e.target === document.body) {
         e.preventDefault();
       }
     }
-  }
-  render() {
+  })
+
+const List = lazy(() => import('./musiclist'));
+
     return (
       <React.Fragment>
-        <div className="content" style={{ 'backgroundImage': this.props.color }}></div>
+        <div className="content" style={{ 'backgroundImage':props.color }}></div>
         <div className="top-container">
-          <Navbar {...this.props} />
-          <Route exact path='/' render={() => (null)} />
+          <Navbar {...props} />
+          <Suspense fallback={null}>
+          <Switch>
+          <Route exact path='/' element={null} />
           <Route path='/search' component={List} />
-          <Route path='/login' component={Login} />
+          </Switch>
+          </Suspense>
           <Controls />
         </div>
       </React.Fragment>
     );
-  }
 }
 const mapStateToProps = (state) => {
   return {
