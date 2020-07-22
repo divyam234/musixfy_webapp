@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,memo } from "react";
 import { connect } from 'react-redux';
 import Loader from './loader'
 import { bindActionCreators } from 'redux';
@@ -83,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
     loadsongsnew
   }, dispatch);
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MusicList);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(MusicList));

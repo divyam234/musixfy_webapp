@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { changeindex, changetrack } from '../actions/index'
@@ -87,4 +87,4 @@ const mapDispatchToProps = (dispatch) => {
     changetrack
   }, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MusicItem);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(MusicItem));
